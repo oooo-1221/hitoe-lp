@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>hitoé — KADO STUDIO TOKYO</title>
+<!-- Instagram広告流入用の改修版インデックス。仮テキストは「PLACEHOLDER」コメントで明示しています。 -->
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+<link rel="icon" href="images/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#C0392B;
+  --cream:#F4F3EF;
+  --gray:#E9E7E7;
+  --yellow:#FFFDD0;
+  --graphite:#2B2A28;
+  --ink:rgba(43,42,40,.82);
+  --red-soft:rgba(192,57,43,.12);
+  --line:rgba(43,42,40,.14);
+  --disp:"Zen Kaku Gothic New",sans-serif;
+  --body:"Zen Kaku Gothic New",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--cream);
+  color:var(--graphite);
+  font-family:var(--body);
+  font-weight:300;
+  line-height:1.85;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:var(--red);color:var(--cream)}
+/* grain overlay */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.04;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.wrap{max-width:1320px;margin:0 auto;padding:0 40px}
+@media(max-width:700px){.wrap{padding:0 22px}}
+/* ---------- HEADER ---------- */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 40px;
+  transition:background .4s,padding .4s;
+}
+header.scrolled{background:var(--cream);box-shadow:0 1px 0 var(--line);padding:14px 40px}
+.logo{font-family:var(--disp);font-style:italic;font-weight:400;font-size:30px;letter-spacing:.5px;color:var(--red);text-decoration:none;line-height:1}
+nav{display:flex;gap:34px;align-items:center}
+nav a{color:var(--graphite);text-decoration:none;font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:400;opacity:.8;transition:opacity .2s}
+nav a:hover{opacity:1}
+.nav-cta{
+  border:1px solid var(--red);border-radius:40px;padding:9px 22px;
+  font-size:11px;letter-spacing:.18em;color:var(--red)!important;opacity:1;
+}
+.nav-cta:hover{background:var(--red);color:var(--cream)!important;opacity:1}
+.menu-toggle{display:none}
+@media(max-width:860px){
+  header{padding:16px 22px}
+}
+/* ---------- HERO : arch gallery (compact — ad landing: CTA must clear the fold) ---------- */
+.hero{min-height:100vh;background:var(--yellow);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:96px 22px 40px;position:relative}
+.hero-inner{width:100%;max-width:900px;margin:0 auto}
+.hero .eyebrow{
+  font-size:12px;letter-spacing:.32em;text-transform:uppercase;font-weight:400;
+  display:inline-flex;gap:14px;align-items:center;margin-bottom:16px;color:var(--red);
+  opacity:0;animation:fade .9s .2s forwards;
+}
+.hero .eyebrow::before{content:"";width:46px;height:1px;background:var(--red)}
+.hero .hero-date{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--red);color:var(--cream);
+  font-size:11px;letter-spacing:.08em;
+  padding:7px 16px;border-radius:30px;margin-bottom:16px;
+  opacity:0;animation:fade .9s .3s forwards;
+}
+.hero h1{
+  font-family:var(--disp);font-weight:300;font-style:italic;
+  font-size:clamp(22px,4vw,59px);line-height:.95;letter-spacing:-.01em;
+  color:var(--graphite);position:relative;z-index:2;
+}
+.hero h1 .it{font-style:italic;color:var(--red)}
+.hero h1.l1{margin-bottom:6px;opacity:0;animation:fade 1s .35s forwards}
+.hero h1.l2{margin-top:6px;opacity:0;animation:fade 1s .7s forwards}
+.hero .jp{
+  font-family:var(--disp);font-style:italic;font-weight:400;font-size:clamp(16px,2vw,21px);
+  letter-spacing:.04em;color:var(--ink);margin-top:10px;
+  opacity:0;animation:fade 1s .9s forwards;
+}
+.hero .jp .it{font-style:italic;color:var(--red)}
+.hero .arch{width:min(300px,54vw);margin:0 auto;position:relative;z-index:1;opacity:0;transform:translateY(20px);animation:risef 1.1s .5s cubic-bezier(.22,1,.36,1) forwards}
+.hero .arch img{width:100%;aspect-ratio:3/4.1;object-fit:cover;border-radius:50% 50% 6px 6px / 38% 38% 4px 4px;display:block;box-shadow:0 22px 50px rgba(43,42,40,.2)}
+.hero .sub{
+  max-width:42ch;margin:14px auto 0;font-size:16px;line-height:1.9;color:var(--ink);font-weight:300;
+  opacity:0;animation:fade 1s 1s forwards;
+}
+.hero-foot{margin-top:18px;opacity:0;animation:fade 1s 1.15s forwards}
+.hero-price{margin-top:14px;font-size:12.5px;letter-spacing:.05em;color:var(--ink);opacity:.85}
+.hero-price strong{color:var(--red);font-family:var(--disp);font-style:italic;font-size:16px;margin:0 2px}
+@media(max-width:600px){.hero{padding-top:86px;padding-bottom:28px}.hero .arch{width:min(210px,58vw)}.hero .sub{font-size:15px}}
+.btn{
+  display:inline-flex;align-items:center;gap:14px;
+  background:var(--red);color:var(--cream);text-decoration:none;
+  padding:18px 34px;border-radius:46px;font-size:13px;letter-spacing:.14em;
+  border:1px solid var(--red);transition:.3s;
+}
+.btn:hover{background:transparent;color:var(--red)}
+.btn .arrow{transition:transform .3s}
+.btn:hover .arrow{transform:translateX(5px)}
+/* ---------- SECTION SHELL ---------- */
+section{padding:120px 0}
+/* .wrap's own padding shorthand (padding:0 40px) otherwise zeroes out the vertical
+   padding on any <section> that carries the .wrap class directly (flow / empathy /
+   testimonials / about / teacher / price / faq / image bands) because a class
+   selector beats a bare type selector. Restore the standard section rhythm there
+   while keeping .wrap's horizontal gutter. */
+section.wrap{padding:120px 40px}
+@media(max-width:700px){
+  section{padding:64px 0}
+  section.wrap{padding:64px 22px}
+}
+.sec-label{font-size:12px;letter-spacing:.3em;text-transform:uppercase;font-weight:400;margin-bottom:30px;display:flex;gap:14px;align-items:center}
+.sec-label::before{content:"";width:34px;height:1px;background:var(--red)}
+.reveal{opacity:0;transform:translateY(34px);transition:opacity 1s cubic-bezier(.22,1,.36,1),transform 1s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:none}
+/* ---------- EMPATHY ---------- */
+.empathy-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(40px,6vw,90px);align-items:center}
+.empathy-text{max-width:none}
+.empathy h2{
+  font-family:var(--disp);font-weight:300;font-size:clamp(28px,4.4vw,52px);line-height:1.32;
+  color:var(--graphite);max-width:18ch;letter-spacing:-.01em;
+}
+.empathy h2 em{font-style:italic}
+.empathy .note{margin-top:34px;max-width:46ch;color:var(--ink);font-size:16px}
+.empathy-img{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--gray)}
+.empathy-img img{width:100%;height:100%;object-fit:cover;object-position:center 35%;display:block;transition:transform 1.2s ease}
+.empathy-img::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(43,42,40,.08)}
+.empathy:hover .empathy-img img{transform:scale(1.04)}
+@media(max-width:860px){.empathy-grid{grid-template-columns:1fr;gap:36px}.empathy-img{aspect-ratio:4/5}.empathy-img img{object-position:center 25%}}
+/* ---------- VALUES ---------- */
+.values{background:var(--gray);color:var(--graphite)}
+.values .sec-label{color:var(--graphite)}
+.values .sec-label::before{background:var(--red)}
+.values-head{font-family:var(--disp);font-style:italic;font-weight:300;font-size:clamp(30px,5vw,64px);line-height:1.05;margin-bottom:80px;color:var(--graphite)}
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
+.vcard{padding:48px 36px 56px;border-right:1px solid var(--line)}
+.vcard:last-child{border-right:none}
+.vcard .num{font-family:var(--disp);font-style:italic;font-size:15px;color:var(--red);margin-bottom:30px}
+.vcard .ill{width:58px;height:58px;color:var(--red);display:block;margin-bottom:34px}
+.vcard:hover .ill{transform:translateY(-3px)}
+.vcard .ill{transition:transform .5s ease}
+.vcard h3{font-family:var(--disp);font-weight:400;font-size:25px;line-height:1.3;margin-bottom:20px;color:var(--graphite)}
+.vcard h3 em{font-style:italic}
+.vcard p{font-size:14.5px;line-height:1.95;color:rgba(43,42,40,.78);font-weight:300}
+@media(max-width:860px){.values-head{margin-bottom:40px}.vgrid{grid-template-columns:1fr}.vcard{border-right:none;border-bottom:1px solid var(--line);padding:32px 0 36px}.vcard .num{margin-bottom:14px}.vcard .ill{margin-bottom:18px}.vcard h3{margin-bottom:12px}}
+.values-cta{text-align:center;margin-top:64px}
+@media(max-width:700px){.values-cta{margin-top:48px}}
+/* ---------- FLOW ---------- */
+.flow .sec-label{margin-bottom:14px}
+.flow-title{font-family:var(--disp);font-weight:300;font-size:clamp(30px,5vw,60px);margin-bottom:70px;letter-spacing:-.01em;color:var(--graphite)}
+.flow-title em{font-style:italic}
+.step{display:grid;grid-template-columns:90px 1fr 1.1fr;gap:40px;align-items:center;padding:34px 0;border-top:1px solid var(--line)}
+.step:last-child{border-bottom:1px solid var(--line)}
+.step .st-num{font-family:var(--disp);font-style:italic;font-size:40px;color:var(--red);opacity:.65}
+.step h4{font-family:var(--disp);font-weight:400;font-size:23px;color:var(--graphite);margin-bottom:6px}
+.step .en{font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.6}
+.step p{font-size:15px;color:var(--ink);font-weight:300}
+@media(max-width:860px){.flow-title{margin-bottom:36px}.step{grid-template-columns:54px 1fr;gap:18px;padding:24px 0}.step p{grid-column:1/-1}.step .st-num{font-size:30px}}
+/* ---------- ATMOSPHERE (NEW) ---------- */
+.atmosphere{background:var(--gray)}
+.atmosphere .sec-label{color:var(--graphite)}
+.atmosphere-head{font-family:var(--disp);font-weight:300;font-size:clamp(28px,4.4vw,52px);line-height:1.3;margin-bottom:18px;color:var(--graphite)}
+.atmosphere-head em{font-style:italic}
+.atmosphere-note{max-width:52ch;color:var(--ink);font-size:15.5px;margin-bottom:44px}
+.atmosphere-carousel{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:6px}
+.atmosphere-carousel::-webkit-scrollbar{display:none}
+.atmosphere-carousel .aph{flex:0 0 auto;width:min(340px,70vw);aspect-ratio:3/4;scroll-snap-align:start;overflow:hidden;background:var(--cream);border-radius:4px;position:relative}
+.atmosphere-carousel .aph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.atmosphere-carousel .aph:hover img{transform:scale(1.06)}
+.flow .atmosphere-carousel{margin-bottom:56px}
+@media(max-width:700px){.atmosphere-note{margin-bottom:30px}.atmosphere-carousel .aph{width:74vw}.flow .atmosphere-carousel{margin-bottom:34px}}
+/* ---------- IMG BLOCK ---------- */
+.imgband{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch}
+.imgband .ph{aspect-ratio:4/5;background:var(--gray);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.imgband .ph::after{content:"PHOTO";position:absolute;font-size:11px;letter-spacing:.3em;color:var(--graphite);opacity:.4}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.ph:has(img)::after{display:none}
+.imgband .txt{padding:0 0 0 70px;display:flex;flex-direction:column;justify-content:center}
+.imgband.flip{direction:rtl}
+.imgband.flip>*{direction:ltr}
+.imgband.flip .txt{padding:0 70px 0 0}
+.imgband h3{font-family:var(--disp);font-weight:300;font-size:clamp(26px,3.6vw,44px);line-height:1.25;margin-bottom:24px;color:var(--graphite)}
+.imgband h3 em{font-style:italic}
+.imgband p{color:var(--ink);font-size:16px;max-width:42ch;margin-bottom:30px}
+@media(max-width:860px){.imgband,.imgband.flip{grid-template-columns:1fr;direction:ltr}.imgband .txt,.imgband.flip .txt{padding:40px 0 0}}
+/* ---------- TESTIMONIALS (NEW) ---------- */
+.testi-head{font-family:var(--disp);font-weight:300;font-size:clamp(28px,4.4vw,50px);line-height:1.3;margin-bottom:64px;color:var(--graphite)}
+.testi-head em{font-style:italic}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:44px}
+.testi-card{padding:0}
+.testi-quote{font-family:var(--disp);font-style:italic;font-size:18px;line-height:1.7;color:var(--graphite);margin-bottom:22px}
+.testi-quote::before{content:"“";color:var(--red)}
+.testi-quote::after{content:"”";color:var(--red)}
+.testi-title{font-family:var(--disp);font-weight:500;font-size:clamp(12px,calc(5vw - 3px),17px);letter-spacing:.02em;color:var(--red);margin-bottom:14px;white-space:nowrap}
+.testi-name{font-size:13px;letter-spacing:.06em;color:var(--ink)}
+.testi-name span{opacity:.65}
+@media(max-width:860px){.testi-grid{grid-template-columns:1fr;gap:44px}}
+/* ---------- SHOP (広告LP版：ボリューム縮小) ---------- */
+.shop{background:var(--yellow);color:var(--graphite);padding:70px 0}
+.shop .sec-label{color:var(--graphite)}.shop .sec-label::before{background:var(--red)}
+.shop h2{font-family:var(--disp);font-style:italic;font-weight:300;font-size:clamp(24px,4vw,40px);line-height:1.1;margin-bottom:14px;color:var(--graphite)}
+.shop h2 em{font-style:italic}
+.shop .lead{max-width:48ch;color:rgba(43,42,40,.82);margin-bottom:36px;font-size:14.5px}
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.product .pimg{aspect-ratio:1;background:rgba(43,42,40,.05);border:1px solid rgba(43,42,40,.2);display:flex;align-items:center;justify-content:center;margin-bottom:12px;transition:.4s;overflow:hidden}
+.product:hover .pimg{background:rgba(43,42,40,.09)}
+.product .pimg span{font-size:11px;letter-spacing:.3em;opacity:.5}
+.product .pimg img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.product:hover .pimg img{transform:scale(1.05)}
+.product h4{font-family:var(--disp);font-weight:400;font-size:20px;color:var(--graphite);display:flex;justify-content:space-between;align-items:baseline}
+.product h4 .pr{font-size:14px;font-style:italic;color:var(--red);opacity:.95}
+.product p{font-size:13px;color:rgba(43,42,40,.7);margin-top:4px}
+.shop-foot{margin-top:54px;display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.shop .btn{background:var(--red);color:var(--cream);border-color:var(--red)}
+.shop .btn:hover{background:transparent;color:var(--red)}
+.shop .micro{font-size:12px;letter-spacing:.1em;color:rgba(43,42,40,.7)}
+@media(max-width:860px){.products{grid-template-columns:1fr;gap:34px}}
+/* ---------- ABOUT ---------- */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.about .ph{aspect-ratio:3/4;background:var(--gray);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.about .ph::after{content:"PORTRAIT";font-size:11px;letter-spacing:.3em;opacity:.4;color:var(--graphite)}
+.about .ph:has(img)::after{display:none}
+.about h2{font-family:var(--disp);font-weight:300;font-size:clamp(28px,4vw,48px);line-height:1.3;margin-bottom:28px;color:var(--graphite)}
+.about h2 em{font-style:italic}
+.about p{color:var(--ink);font-size:16px;margin-bottom:20px;max-width:46ch}
+.about .sign{font-family:var(--disp);font-style:italic;font-size:20px;color:var(--red);margin-top:30px}
+@media(max-width:860px){.about{grid-template-columns:1fr;gap:40px}}
+/* ---------- TEACHER (NEW) ---------- */
+.teacher-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:70px;align-items:center;margin-bottom:56px}
+.teacher-ph{aspect-ratio:3/4;background:var(--gray);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.teacher-ph::after{content:"PORTRAIT";font-size:11px;letter-spacing:.3em;opacity:.4;color:var(--graphite)}
+.teacher-ph:has(img)::after{display:none}
+.teacher-ph img{width:100%;height:100%;object-fit:cover;display:block}
+.teacher-text h2{font-family:var(--disp);font-weight:300;font-size:clamp(18px,2.2vw,24px);line-height:1.35;margin-bottom:22px;color:var(--graphite)}
+.teacher-text h2 em{font-style:italic}
+.teacher-name{font-family:var(--disp);font-size:22px;color:var(--graphite);margin-top:4px}
+.teacher-name .teacher-en{font-size:11px;letter-spacing:.15em;opacity:.55;margin-left:10px;font-family:var(--body);text-transform:uppercase}
+.teacher-role{font-size:13px;letter-spacing:.1em;color:var(--red);margin:8px 0 24px}
+.teacher-text p{color:var(--ink);font-size:15.5px;max-width:48ch;margin-bottom:16px}
+.teacher-quote{font-family:var(--disp);font-style:italic;font-size:17px;color:var(--graphite);margin-top:22px;line-height:1.75}
+.teacher-foot{text-align:center}
+@media(max-width:860px){.teacher-grid{grid-template-columns:1fr;gap:32px}}
+/* ---------- PRICE ---------- */
+.price{text-align:center}
+.price .sec-label{justify-content:center}
+.price .card{
+  max-width:560px;margin:0 auto;border:1px solid var(--red);border-radius:6px;padding:64px 50px;position:relative;
+}
+.price .tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--cream);padding:0 16px;font-family:var(--disp);font-style:italic;font-size:15px;color:var(--red)}
+.price h2{font-family:var(--disp);font-weight:300;font-size:34px;margin-bottom:6px;color:var(--graphite)}
+.price .en{font-size:11px;letter-spacing:.24em;text-transform:uppercase;opacity:.6;margin-bottom:30px}
+.price .pre-amount{font-size:15px;color:var(--ink);font-weight:300;margin-bottom:22px;font-style:italic;letter-spacing:.04em}
+.price .orig{display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;margin-bottom:8px}
+.price .orig .was{font-size:15px;color:var(--ink);text-decoration:line-through;text-decoration-color:var(--red);opacity:.7;font-family:var(--disp);font-style:italic}
+.price .orig .badge{font-size:11px;letter-spacing:.1em;color:var(--cream);background:var(--red);border-radius:40px;padding:5px 13px}
+.price .amount{font-family:var(--disp);font-style:italic;font-size:72px;line-height:1;margin-bottom:8px;color:var(--red)}
+.price .amount small{font-size:22px;font-style:normal}
+.price .next-session{margin:22px auto 0;max-width:340px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0}
+.price .next-session .lbl{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+.price .next-date{font-family:var(--disp);font-style:italic;font-size:17px;color:var(--graphite)}
+.price .next-time{font-family:var(--disp);font-style:italic;font-size:15px;color:var(--red);margin:2px 0 10px}
+.price .next-venue{font-size:12.5px;color:var(--ink);opacity:.85;line-height:1.7}
+.price .incl{list-style:none;margin:30px auto 12px;max-width:300px;text-align:left}
+.price .incl li{padding:11px 0;border-bottom:1px solid var(--line);font-size:14.5px;color:var(--ink);display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px}
+.price .incl li span{color:var(--red);font-family:var(--disp);font-style:italic}
+.price .note2{font-size:12px;color:var(--ink);opacity:.7;margin:20px 0 28px}
+.price .price-testi{max-width:340px;margin:0 auto 28px;padding:20px 22px;background:var(--gray);border-radius:6px;text-align:left}
+.price .price-testi p{font-family:var(--disp);font-style:italic;font-size:14.5px;color:var(--graphite);line-height:1.7;margin-bottom:8px}
+.price .price-testi span{font-size:11px;letter-spacing:.08em;color:var(--ink);opacity:.7}
+@media(max-width:480px){.price .card{padding:56px 26px}.price .incl{max-width:100%}}
+/* ---------- FAQ ---------- */
+.faq-title{font-family:var(--disp);font-weight:300;font-size:clamp(28px,4.4vw,52px);margin-bottom:50px;color:var(--graphite)}
+.faq-title em{font-style:italic}
+.faq-item{border-top:1px solid var(--line);padding:0}
+.faq-item:last-child{border-bottom:1px solid var(--line)}
+.faq-q{padding:26px 0;font-size:18px;font-family:var(--disp);font-weight:400;color:var(--graphite);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.faq-q .pl{font-size:22px;transition:transform .3s;flex-shrink:0;color:var(--red)}
+.faq-item.open .pl{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-a p{padding:0 0 26px;color:var(--ink);font-size:15px;max-width:62ch}
+/* ---------- CTA / FOOTER ---------- */
+.final{background:var(--red);color:var(--cream);text-align:center;padding:130px 0}
+.final ::selection{background:var(--cream);color:var(--red)}
+.final .big{font-family:var(--disp);font-style:italic;font-weight:300;font-size:clamp(27px,5.3vw,73px);line-height:1.1;margin-bottom:16px;color:var(--cream)}
+.final .big em{font-style:italic}
+.final p{color:rgba(244,243,239,.85);max-width:40ch;margin:0 auto 44px;font-size:16px}
+.final .btn{background:var(--cream);color:var(--red);border-color:var(--cream)}
+.final .btn:hover{background:transparent;color:var(--cream)}
+footer{background:var(--graphite);color:var(--cream);padding:70px 0 50px;border-top:1px solid rgba(244,243,239,.2)}
+.foot-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:40px}
+.foot-logo{font-family:var(--disp);font-style:italic;font-size:46px;line-height:1}
+.foot-sub{font-size:11px;letter-spacing:.3em;text-transform:uppercase;margin-top:8px;opacity:.8}
+.foot-col h5{font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:16px;opacity:.7;font-weight:400}
+.foot-col a,.foot-col p{display:block;color:var(--cream);text-decoration:none;font-size:14px;opacity:.9;margin-bottom:9px;line-height:1.6}
+.foot-col a:hover{opacity:.6}
+.foot-base{margin-top:60px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:11px;letter-spacing:.12em;opacity:.7}
+@keyframes rise{to{transform:translateY(0)}}
+@keyframes risef{to{opacity:1;transform:none}}
+@keyframes fade{to{opacity:1}}
+@keyframes scroll{to{transform:translateX(-50%)}}
+/* ---------- STICKY MOBILE CTA (NEW) ---------- */
+.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:900;background:var(--cream);border-top:1px solid var(--line);padding:12px 18px;display:flex;justify-content:center;transform:translateY(120%);transition:transform .4s ease;box-shadow:0 -6px 20px rgba(43,42,40,.1)}
+.sticky-cta.show{transform:translateY(0)}
+.sticky-cta a{width:100%;max-width:420px;justify-content:center}
+@media(min-width:861px){.sticky-cta{display:none}}
+</style>
+</head>
+<body>
+<!-- ナビは広告流入専用に簡素化（ロゴ＋予約ボタンのみ。離脱導線を減らすため） -->
+<header id="hdr">
+  <a href="#top" class="logo">hitoé</a>
+  <nav>
+    <a href="#book" class="nav-cta">Book a seat</a>
+  </nav>
+</header>
+<!-- HERO : arch gallery -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <div class="eyebrow">Ikebana experience · Tokyo</div>
+    <div class="hero-date">次回開催 10月17日（土）14:00〜・残席4席</div>
+    <h1 class="l1">自分に戻る、</h1>
+    <div class="arch"><img src="images/R0001285.JPG" alt="" loading="eager"></div>
+    <h1 class="l2">静かなひととき。</h1>
+    <p class="jp">A quiet hour to return to <span class="it">yourself</span>.</p>
+    <p class="sub">一期一会の花材を、自分の手で。持ち帰って、明日の部屋で再現できる。</p>
+    <div class="hero-foot">
+      <a href="#book" class="btn">体験を予約する <span class="arrow">→</span></a>
+      <div class="hero-price">初回体験 <strong>¥4,000</strong>（通常¥6,000）・ 所要約2時間</div>
+    </div>
+  </div>
+</section>
+<!-- EMPATHY -->
+<section class="empathy wrap reveal">
+  <div class="empathy-grid">
+    <div class="empathy-text">
+      <div class="sec-label">For you</div>
+      <h2>花を飾りたい。<br>でも、なんとなく<em>うまく生けられない</em>。</h2>
+      <p class="note">美しさを暮らしに、でも忙しくて後回しに。hitoéは手ぶら二時間、花と静かに向き合い「自分に戻る」場所。今の私にちょうどいい贅沢を。</p>
+    </div>
+    <div class="empathy-img"><img src="images/R0001404.JPG" alt="花と静かに向き合う時間" loading="lazy"></div>
+  </div>
+</section>
+<!-- VALUES -->
+<section class="values" id="value">
+  <div class="wrap reveal">
+    <div class="sec-label">What you take home</div>
+    <div class="values-head">Not consumption.<br>A small investment<br>in yourself.</div>
+    <div class="vgrid">
+      <div class="vcard">
+        <div class="num">01</div>
+        <svg class="ill" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="17" cy="46" r="6"/>
+          <circle cx="35" cy="46" r="6"/>
+          <path d="M20.5 42 L51 14"/>
+          <path d="M31.5 42 L18 23"/>
+          <circle cx="27" cy="31.5" r="1.3" fill="currentColor" stroke="none"/>
+        </svg>
+        <h3>手軽でカジュアル<br>でも、本格的な華道を</h3>
+        <p>花屋探しも下調べも不要。手ぶらの二時間で、季節のエッセンスを美しく。</p>
+      </div>
+      <div class="vcard">
+        <div class="num">02</div>
+        <svg class="ill" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M23 41 C21 51 26 56 32 56 C38 56 43 51 41 41"/>
+          <path d="M22 41 H42"/>
+          <path d="M32 41 V18"/>
+          <path d="M32 28 L40 20"/>
+          <circle cx="31.5" cy="15" r="3.6"/>
+          <circle cx="41" cy="17.5" r="2.4"/>
+        </svg>
+        <h3>家まで続く、<br>再現できる体験</h3>
+        <p>「楽しかった」で終わらせない。持ち帰った花は、明日の部屋で再現できる自信に。</p>
+      </div>
+      <div class="vcard">
+        <div class="num">03</div>
+        <svg class="ill" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M11 32 Q32 17 53 32 Q32 47 11 32 Z"/>
+          <circle cx="32" cy="32" r="6"/>
+          <circle cx="32" cy="32" r="1.5" fill="currentColor" stroke="none"/>
+        </svg>
+        <h3>空間を、<br><em>見る目</em>が育つ。</h3>
+        <p>花を観察し、余白と均衡を探す「引き算の目」。部屋の整え方から暮らしの見え方まで変える、色褪せない感性に。</p>
+      </div>
+    </div>
+    <div class="values-cta"><a href="#book" class="btn">体験を予約する <span class="arrow">→</span></a></div>
+  </div>
+</section>
+<!-- FLOW -->
+<section class="flow wrap reveal" id="flow">
+  <div class="sec-label">The experience</div>
+  <div class="flow-title">体験の<em>流れ</em></div>
+  <div class="atmosphere-carousel">
+    <div class="aph"><img src="images/class-worksheet.jpg" alt="生け方カードを見ながら花を生ける" loading="lazy"></div>
+    <div class="aph"><img src="images/class-hands-berries.jpg" alt="花鋏で花材を整える手元" loading="lazy"></div>
+    <div class="aph"><img src="images/class-arranging-closeup.jpg" alt="一輪ずつ花器に生けていく" loading="lazy"></div>
+    <div class="aph"><img src="images/class-together.jpg" alt="講師と一緒に仕上げを確認する" loading="lazy"></div>
+  </div>
+  <div class="step">
+    <div class="st-num">01</div>
+    <div><h4>迎えられる</h4><div class="en">Arrive empty-handed</div></div>
+    <p>手ぶらで。庭を望む席で季節のドリンク（アルコール・ノンアル選択可）とともに、呼吸を整えます。</p>
+  </div>
+  <div class="step">
+    <div class="st-num">02</div>
+    <div><h4>花を選ぶ</h4><div class="en">Choose the season</div></div>
+    <p>その日だけの一期一会の花材から、心が動いたものを選びます。</p>
+  </div>
+  <div class="step">
+    <div class="st-num">03</div>
+    <div><h4>生ける</h4><div class="en">Find the balance</div></div>
+    <p>ハサミを入れ、器との均衡を探す。そのプロセスに、今の自分が映ります。</p>
+  </div>
+  <div class="step">
+    <div class="st-num">04</div>
+    <div><h4>持ち帰る</h4><div class="en">Bring it to your life</div></div>
+    <p>生けた花を持ち帰り、今日の体験を明日の暮らしへ。</p>
+  </div>
+</section>
+<!-- TESTIMONIALS (NEW) -->
+<!-- PLACEHOLDER: 体験会後の参加者インタビュー（議事録）をもとに構成した引用です。実際に「このまま公開してよいか」参加者の確認を取ってから公開してください。属性表記も仮です -->
+<section class="testimonials wrap reveal" id="voices">
+  <div class="sec-label">Voices</div>
+  <div class="testi-head">体験した方の<br><em>声。</em></div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <h4 class="testi-title">自由にやっていいと言われて、ほっとしました</h4>
+      <p class="testi-quote">型にはめられるのかと身構えていたけど、自由にやっていいと言われてほっとしました。気づいたらあっという間の二時間でした。</p>
+      <div class="testi-name">20代 さん <span>・ 初参加</span></div>
+    </div>
+    <div class="testi-card">
+      <h4 class="testi-title">花を"面"や"線"で見る視点が、新鮮でした</h4>
+      <p class="testi-quote">花を"面"や"線"として見る視点が新鮮でした。ドリンク片手に花材を選ぶ時間も含め、五感がゆっくり満たされていく感覚に。</p>
+      <div class="testi-name">30代 さん <span>・ 初参加</span></div>
+    </div>
+    <div class="testi-card">
+      <h4 class="testi-title">部屋の印象が変わって、驚きました</h4>
+      <p class="testi-quote">持ち帰った花を教わった通りに飾ったら、部屋の印象が想像以上に変わって驚きました。次は自分用の剣山も欲しくなっています。</p>
+      <div class="testi-name">20代 さん <span>・ 初参加</span></div>
+    </div>
+  </div>
+</section>
+<!-- IMAGE BAND 2 は広告LP版ではページ短縮のため削除（STUDIOセクションと訴求が重複していたため） -->
+<!-- ABOUT -->
+<section class="about wrap reveal" id="about">
+  <div class="ph"><img src="images/R0001330.JPG" alt="" loading="lazy"></div>
+  <div>
+    <div class="sec-label">The studio</div>
+    <h2>見せるための美ではなく、<br><em>感じるための美を。</em></h2>
+    <p>美しさは、体験する人の内側に向かうもの。それがhitoé / KADO STUDIOの思想です。サロンでの気づきを、明日を生きる力に。</p>
+    <p>花材も、器も、講師も。規模ではなく、美意識と誠実さで選んでいます。</p>
+    <div class="sign">— hitoé, Tokyo</div>
+  </div>
+</section>
+<!-- TEACHER (NEW) -->
+<!-- PLACEHOLDER: 講師のポートレート写真は未着手です。実際の写真に差し替えてください -->
+<section class="teacher wrap reveal" id="teacher">
+  <div class="sec-label">The teacher</div>
+  <div class="teacher-grid">
+    <div class="teacher-ph"><img src="images/teacher-mayuki.png" alt="mayuki（華道家 ／ hitoé 主宰）" loading="lazy"></div>
+    <div class="teacher-text">
+      <h2>講師プロフィール</h2>
+      <p class="teacher-name">mayuki<span class="teacher-en">Instructor</span></p>
+      <p class="teacher-role">華道家 ／ hitoé 主宰</p>
+      <p>学生時代から約15年、個人・グループレッスンを中心に活動。小原流二級家元脇教授。</p>
+      <p>型に捕らわれず、花の楽しさを伝えるレッスン。いけばなが初めての方にも好評です。</p>
+      <p>テレビ・雑誌等のメディアで、芸能人へのレッスン経験も多数。</p>
+      <p class="teacher-quote">"見せるための美ではなく、感じるための美を。それを、いちばん近くで一緒に探す時間にしたいと思っています。"</p>
+    </div>
+  </div>
+  <div class="teacher-foot"><a href="#book" class="btn">体験を予約する <span class="arrow">→</span></a></div>
+</section>
+<!-- PRICE -->
+<section class="price wrap reveal" id="book">
+  <div class="sec-label">Book a seat</div>
+  <div class="card">
+    <div class="tag">First visit</div>
+    <h2>初回体験</h2>
+    <div class="en">Introductory session</div>
+    <p class="pre-amount">この二時間は、あなたの中に残ります。</p>
+    <div class="orig"><span class="was">通常 ¥6,000</span><span class="badge">オープン記念 ¥2,000 OFF</span></div>
+    <div class="amount"><small>¥</small>4,000</div>
+    <!-- PLACEHOLDER: 次回開催情報。日程が変わった場合はここを更新してください -->
+    <div class="next-session">
+      <div class="lbl">次回開催</div>
+      <div class="next-date">2026年10月17日（土）</div>
+      <div class="next-time">14:00–16:00</div>
+      <div class="next-venue">古民家「みんなのざしき」<br>〒110-0002 東京都台東区上野桜木二丁目15-6</div>
+    </div>
+    <ul class="incl">
+      <li>所要時間 <span>約2時間</span></li>
+      <li>季節の花材・花器 <span>込み</span></li>
+      <li>季節のペアリングドリンク <span>2杯</span></li>
+      <li>ドリンクの種類 <span>アルコール・ノンアル選択可</span></li>
+      <li>生けた花の持ち帰り <span>可</span></li>
+      <li>いけばなの基礎視点 <span>生け方カード付き</span></li>
+      <li>形態 <span>対面・少人数・東京</span></li>
+    </ul>
+    <p class="note2"><!-- PLACEHOLDER: 2回目以降の目安料金を確定したら記載 -->2回目以降のご案内は、体験当日にご説明します。</p>
+    <!-- PLACEHOLDER: 議事録をもとに構成した引用です。公開前に参加者への確認をお願いします -->
+    <div class="price-testi">
+      <p>"型にはめられるのかと身構えていたけど、自由にやっていいと言われてほっとしました。"</p>
+      <span>— 参加者の声より</span>
+    </div>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScg3unC66XgvoTyQO_1xcIGsY5G2ZO9lKrXonVrnSYvdG-unA/viewform" class="btn" target="_blank" rel="noopener">予約に進む <span class="arrow">→</span></a>
+  </div>
+</section>
+<!-- FAQ -->
+<section class="faq wrap reveal">
+  <div class="sec-label">Questions</div>
+  <div class="faq-title">Before you <em>arrive</em>.</div>
+  <div class="faq-item">
+    <div class="faq-q">花を生けるのは初めてでも大丈夫ですか？ <span class="pl">+</span></div>
+    <div class="faq-a"><p>もちろんです。初めての方のための体験です。「うまく生けられない」感覚をほどくところから始めます。</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">持ち物は必要ですか？ <span class="pl">+</span></div>
+    <div class="faq-a"><p>不要です。花材・花器・道具・ドリンクはすべて込み。生けた花を持ち帰るので、帰り道だけご配慮ください。</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">服装の指定はありますか？ <span class="pl">+</span></div>
+    <div class="faq-a"><p>堅苦しさは不要です。心地よい、普段通りの服装でお越しください。</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">道具はその場で買えますか？ <span class="pl">+</span></div>
+    <div class="faq-a"><p>はい。使った花鋏や花器はそのままお持ち帰りいただけます。オンラインストアでも購入可能です。</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">所要時間と場所を教えてください。 <span class="pl">+</span></div>
+    <div class="faq-a"><p>約2時間、東京のスタジオで対面開催。少人数制で、静かに花と向き合えます。所在地はご予約後にご案内します。</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">予約のキャンセル・変更はできますか？ <span class="pl">+</span></div>
+    <div class="faq-a"><p><!-- PLACEHOLDER: 実際のキャンセルポリシーに差し替え -->予約日の3日前まで、無料でキャンセル・日程変更が可能です。詳細はご予約確認メールでご案内します。</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">お支払い方法を教えてください。 <span class="pl">+</span></div>
+    <div class="faq-a"><p><!-- PLACEHOLDER: 実際の決済方法に差し替え -->クレジットカードによる事前決済、または当日現金でのお支払いに対応しています。</p></div>
+  </div>
+</section>
+<!-- FINAL CTA -->
+<section class="final">
+  <div class="wrap">
+    <div class="big">花を見つめ、自分と向き合う。<br>心を満たす<em>ひととき</em>を。</div>
+    <p>今しか咲かない季節の花を、自分の手で活ける時間。</p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScg3unC66XgvoTyQO_1xcIGsY5G2ZO9lKrXonVrnSYvdG-unA/viewform" class="btn" target="_blank" rel="noopener">体験を予約する <span class="arrow">→</span></a>
+  </div>
+</section>
+<!-- SHOP (広告LPでは優先度を下げ、予約導線より後ろに配置) -->
+<section class="shop" id="shop">
+  <div class="wrap reveal">
+    <div class="sec-label">Objects</div>
+    <h2>一生ものの道具を、<br><em>今日ここで選ぶ。</em></h2>
+    <p class="lead">体験で使った道具は、そのまま持ち帰ることができます。</p>
+    <div class="products">
+      <div class="product">
+        <div class="pimg"><img src="images/product-hanabasami.jpg" alt="花鋏" loading="lazy"></div>
+        <h4>花鋏 <span class="pr">from ¥6,800</span></h4>
+      </div>
+      <div class="product">
+        <div class="pimg"><img src="images/product-kaki.jpg" alt="花器" loading="lazy"></div>
+        <h4>花器 <span class="pr">from ¥4,500</span></h4>
+      </div>
+      <div class="product">
+        <div class="pimg"><img src="images/product-kenzan.jpg" alt="水盤・剣山" loading="lazy"></div>
+        <h4>水盤・剣山 <span class="pr">from ¥3,200</span></h4>
+      </div>
+    </div>
+    <div class="shop-foot">
+      <a href="#" class="btn">オンラインストアへ <span class="arrow">→</span></a>
+      <span class="micro">店頭購入可 / 体験当日にそのままお持ち帰りいただけます</span>
+    </div>
+  </div>
+</section>
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">hitoé</div>
+        <div class="foot-sub">KADO STUDIO &nbsp;·&nbsp; TOKYO</div>
+      </div>
+      <div class="foot-col">
+        <h5>Menu</h5>
+        <a href="#flow">Experience</a>
+        <a href="#shop">Objects</a>
+        <a href="#about">Studio</a>
+        <a href="#book">Book a seat</a>
+      </div>
+      <div class="foot-col">
+        <h5>Contact</h5>
+        <p>Tokyo, Japan</p>
+        <a href="#">Instagram</a>
+        <a href="#">Online Store</a>
+        <a href="#">Mail</a>
+        <a href="#"><!-- PLACEHOLDER: 特定商取引法に基づく表記ページへのリンクに差し替え -->特定商取引法に基づく表記</a>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© 2026 hitoé / KADO STUDIO</span>
+      <span>静けさの中に、くらしがある。</span>
+    </div>
+  </div>
+</footer>
+<!-- STICKY MOBILE CTA (NEW) -->
+<div class="sticky-cta" id="stickyCta">
+  <a href="#book" class="btn">今すぐ予約する <span class="arrow">→</span></a>
+</div>
+<script>
+const hdr=document.getElementById('hdr');
+const stickyCta=document.getElementById('stickyCta');
+const heroEl=document.querySelector('.hero');
+const priceEl=document.getElementById('book');
+addEventListener('scroll',()=>{
+  hdr.classList.toggle('scrolled',scrollY>40);
+  const heroBottom=heroEl.offsetTop+heroEl.offsetHeight;
+  const priceTop=priceEl?priceEl.offsetTop:Infinity;
+  const show=scrollY>heroBottom-160 && scrollY<priceTop-80;
+  stickyCta.classList.toggle('show',show);
+});
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const it=q.parentElement,a=q.nextElementSibling,open=it.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-a').style.maxHeight=null});
+    if(!open){it.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}
+  });
+});
+</script>
+</body>
+</html>
